@@ -1,0 +1,41 @@
+@use '../../theme.scss' as theme;
+@use '../../styles/mixins.scss' as mixins;
+
+.card {
+    @include mixins.base;
+    display: flex;
+    flex-direction: column;
+    border: theme.$border;
+    border-radius: theme.$border-radius;
+
+    .toolbar {
+        border-bottom: theme.$border;
+        padding: 0.5rem 0.75rem;
+        @include theme.font-title;
+    }
+
+    .content {
+        padding: 0.75rem;
+        padding-bottom: 0;
+
+        * {
+            &:first-child {
+                margin-top: 0;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .actions {
+        padding: 0.75rem;
+        display: flex;
+        justify-content: flex-end;
+
+        * {
+            margin-left: 0.75rem;
+        }
+    }
+}

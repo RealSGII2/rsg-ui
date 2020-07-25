@@ -1,0 +1,50 @@
+@use '../../theme.scss' as theme;
+@use '../../styles/mixins.scss' as mixins;
+
+.typography- {
+    @include mixins.base;
+    
+    &body {
+        @include theme.font-body
+    }
+
+    &heading1, &h1 {
+        @include theme.font-heading1
+    }
+
+    &heading2, &h2 {
+        @include theme.font-heading2
+    }
+
+    &heading3, &h3 {
+        @include theme.font-heading3
+    }
+
+    &heading4, &h4 {
+        @include theme.font-heading4
+    }
+
+    &heading5, &h5 {
+        @include theme.font-heading5
+    }
+
+    &heading6, &h6 {
+        @include theme.font-heading1
+    }
+
+    &subheading1, &sh1 {
+        @include theme.font-subheading1
+    }
+
+    &subheading2, &sh2 {
+        @include theme.font-subheading2
+    }
+
+    &caption {
+        @include theme.font-caption
+    }
+
+    &overline {
+        @include theme.font-overline
+    }
+}
