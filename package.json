@@ -1,6 +1,6 @@
 {
   "name": "rsg-ui",
-  "version": "1.0.0",
+  "version": "1.0.0.1",
   "description": "Made with create-react-library",
   "author": "RealSGII2",
   "license": "MIT",
@@ -45,15 +45,16 @@
     "prettier": "^2.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "^3.4.1"
+    "react-scripts": "^3.4.1",
+    "classnames": "^2.2.6",
+    "node-sass": "npm:sass",
+    "prop-types": "^15.7.2",
+    "sass": "^1.26.10"
   },
   "files": [
     "dist"
   ],
   "dependencies": {
-    "classnames": "^2.2.6",
-    "node-sass": "npm:sass",
-    "prop-types": "^15.7.2",
-    "sass": "^1.26.10"
+    
   }
 }

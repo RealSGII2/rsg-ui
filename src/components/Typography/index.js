@@ -6,12 +6,12 @@ import styles from './styles.module.scss'
 class Typography extends Component {
     render () {
         const {
-            style,
+            type,
             ...baseProps
         } = this.props
 
         const classes = classnames({
-            [styles[`typography-${style}`]]: true
+            [styles[`typography-${type}`]]: true,
         })
 
         return (
@@ -44,7 +44,8 @@ Typography.propTypes = {
         "body2",
         "button",
         "caption",
-        "overline"
+        "overline",
+        "label"
     ])
 }
 
