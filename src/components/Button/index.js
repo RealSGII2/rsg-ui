@@ -1,38 +1,39 @@
-import React, { Component } from 'react'
+import React from 'react'
+import Typography from '../Typography'
 import Utils from '../../utils/types'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import styles from './styles.module.scss'
 
-class Button extends Component {
-    render () {
-        const {
-            color,
-            look,
-            elevated,
-            pill,
-            size,
-            disabled,
-            label,
-            children,
-            ...baseButtonProps
-        } = this.props
+function Button(props) {
+    const {
+        color,
+        look,
+        elevated,
+        pill,
+        size,
+        disabled,
+        label,
+        children,
+        ...baseButtonProps
+    } = props
 
-        const classes = classnames({
-            [styles.button]: true,
-            [styles[`color-${color}`]]: true,
-            [styles[`look-${look}`]]: true,
-            [styles.elevated]: elevated,
-            [styles.pill]: pill,
-            [styles[`size-${size}`]]: true,
-        })
+    const classes = classnames({
+        [styles.button]: true,
+        [styles[`color-${color}`]]: true,
+        [styles[`look-${look}`]]: true,
+        [styles.elevated]: elevated,
+        [styles.pill]: pill,
+        [styles[`size-${size}`]]: true,
+    })
 
-        return (
-            <button className={classes} disabled={disabled} {...baseButtonProps}>
+    return (
+        <button className={classes} disabled={disabled} {...baseButtonProps}>
+            <Typography.Span type="button">
                 {label || children}
-            </button>
-        )
-    }
+            </Typography.Span>
+        </button>
+    )
 }
 
 Button.propTypes = {

@@ -12,8 +12,9 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
-    @include theme.font-button;
+    min-width: 68px;
+    user-select: none;
+    //pointer-events: none;
 
     &.look-filled {
         transition: background-color theme.$transition;
@@ -50,14 +51,14 @@
             color: $color;
 
             &:hover {
-                $col: darken($color, theme.$color-change);
+                $col: darken($color, theme.$color-change * 1);
                 border-color: $col;
                 color: $col;
             }
 
             &:active {
                 $col: darken($color, theme.$color-change*2);
-                background-color: transparentize($color: $col, $amount: 0.95);
+                background-color: transparentize($color: $col, $amount: 1 - (theme.$color-change * 0.06));
                 border-color: $col;
                 color: $col;
             }
@@ -71,12 +72,12 @@
             color: $color;
 
             &:hover {
-                $col: darken($color, theme.$color-change);
+                $col: darken($color, theme.$color-change * 2);
                 color: $col;
             }
 
             &:active {
-                $col: darken($color, theme.$color-change*2);
+                $col: darken($color, theme.$color-change*4);
                 background-color: transparentize($color: $col, $amount: 0.95);
                 color: $col;
             }
@@ -88,23 +89,23 @@
 
         @include mixins.color using ($color) {
             color: $color;
-            background-color: transparentize($color: $color, $amount: 0.95);
+            background-color: transparentize($color: $color, $amount: 0.8);
 
             &:hover {
                 $col: darken($color, theme.$color-change);
-                background-color: transparentize($color: $col, $amount: 0.95 - (theme.$color-change * 0.01));
+                background-color: transparentize($color: $col, $amount: 0.8 - (theme.$color-change * 0.02));
                 color: $col;
             }
 
             &:active {
                 $col: darken($color, theme.$color-change*2);
-                background-color: transparentize($color: $col, $amount: 0.95 - (theme.$color-change * 0.02));
+                background-color: transparentize($color: $col, $amount: 0.8 - (theme.$color-change * 0.04));
                 color: $col;
             }
 
             &:disabled {
                 $col: invert(theme.$base-theme);
-                background-color: transparentize($color: invert(theme.$base-theme), $amount: 0.95);
+                background-color: transparentize($color: invert(theme.$base-theme), $amount: 0.8);
             }
         }
     }
@@ -166,7 +167,11 @@
             }
 
             height: map-get($val, "height");
-            font-size: map-get($val, "font-size");
+            font-size: map-get($val, "font-size") !important;
+
+            span {
+                font-size: inherit !important;
+            }
         }
     }
 

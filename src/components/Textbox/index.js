@@ -1,32 +1,30 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Typography from '../Typography'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import styles from './styles.module.scss'
 
-class Textbox extends Component {
-    render () {
-        const {
-            label,
-            size,
-            disabled,
-            ...baseInputProps
-        } = this.props
+function Textbox(props) {
+    const {
+        label,
+        size,
+        disabled,
+        ...baseInputProps
+    } = props
 
-        const classes = classnames({
-            [styles.textbox]: true,
-            [styles[`size-${size}`]]: true
-        })
+    const classes = classnames({
+        [styles.textbox]: true,
+        [styles[`size-${size}`]]: true
+    })
 
-        return (
-            <div className={styles.container}>
-                <Typography type="label">
-                    {label}
-                </Typography>
-                <input className={classes} disabled={disabled} {...baseInputProps} />
-            </div>
-        )
-    }
+    return (
+        <div className={styles.container}>
+            <Typography type="label">
+                {label}
+            </Typography>
+            <input className={classes} disabled={disabled} {...baseInputProps} />
+        </div>
+    )
 }
 
 Textbox.propTypes = {

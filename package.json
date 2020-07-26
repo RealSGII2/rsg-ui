@@ -1,6 +1,6 @@
 {
   "name": "rsg-ui",
-  "version": "1.0.0.1",
+  "version": "1.0.1",
   "description": "Made with create-react-library",
   "author": "RealSGII2",
   "license": "MIT",
@@ -12,8 +12,8 @@
     "node": ">=10"
   },
   "scripts": {
-    "build": "microbundle-crl --no-compress --format modern,cjs",
-    "start": "microbundle-crl watch --no-compress --format modern,cjs",
+    "build": "microbundle-crl --no-compress --format modern,cjs --css-modules \"[local]-[hash:base64:7]\"",
+    "start": "microbundle-crl watch --no-compress --format modern,cjs --css-modules \"[local]-[hash:base64:7]\"",
     "prepare": "run-s build",
     "test": "run-s test:unit test:lint test:build",
     "test:build": "run-s build",
@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
+    "classnames": "^2.2.6",
     "cross-env": "^7.0.2",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.7.0",
@@ -41,20 +42,20 @@
     "eslint-plugin-standard": "^4.0.1",
     "gh-pages": "^2.2.0",
     "microbundle-crl": "^0.13.10",
+    "node-sass": "npm:sass",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.4",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "^3.4.1",
-    "classnames": "^2.2.6",
-    "node-sass": "npm:sass",
-    "prop-types": "^15.7.2",
     "sass": "^1.26.10"
   },
   "files": [
     "dist"
   ],
   "dependencies": {
-    
+    "mdi-react": "^7.3.0",
+    "react-responsive": "^8.1.0"
   }
 }

@@ -1,28 +1,45 @@
-import React, { Component } from 'react'
+import React from 'react'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import styles from './styles.module.scss'
 
-class Typography extends Component {
-    render () {
-        const {
-            type,
-            ...baseProps
-        } = this.props
+function Typography(props) {
+    const {
+        type,
+        children,
+        ...baseProps
+    } = props
 
-        const classes = classnames({
-            [styles[`typography-${type}`]]: true,
-        })
+    const classes = classnames({
+        [styles[`typography-${type}`]]: true,
+    })
 
-        return (
-            <div className={classes} {...baseProps}>
-                {this.props.children}
-            </div>
-        )
-    }
+    return (
+        <div className={classes} {...baseProps}>
+            {children}
+        </div>
+    )
 }
 
-Typography.propTypes = {
+Typography.Span = function(props) {
+    const {
+        type,
+        children,
+        ...baseProps
+    } = props
+
+    const classes = classnames({
+        [styles[`typography-${type}`]]: true,
+    })
+
+    return (
+        <span className={classes} {...baseProps}>
+            {children}
+        </span>
+    )
+}
+
+const props = {
     type: PropTypes.oneOf([
         "h1",
         "heading1",
@@ -49,8 +66,14 @@ Typography.propTypes = {
     ])
 }
 
-Typography.defaultProps = {
-    type: "body1"
+const def = {
+    type: "body"
 }
+
+Typography.propTypes = props
+Typography.defaultProps = def
+
+Typography.Span.propTypes = props
+Typography.Span.defaultProps = def
 
 export default Typography

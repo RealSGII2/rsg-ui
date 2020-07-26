@@ -1,22 +1,68 @@
 @use '../../theme.scss' as theme;
 @use '../../styles/mixins.scss' as mixins;
 
+$padding: 1rem;
+
 .card {
     @include mixins.base;
     display: flex;
     flex-direction: column;
     border: theme.$border;
     border-radius: theme.$border-radius;
+    transition: box-shadow theme.$transition, background-color theme.$transition;
 
     .toolbar {
-        border-bottom: theme.$border;
-        padding: 0.5rem 0.75rem;
+        padding: $padding;
+        padding-bottom: 0;
         @include theme.font-title;
     }
 
+    &.toolbar-border .toolbar {
+        border-bottom: theme.$border;
+        padding-bottom: $padding;
+    }
+
+    &.elevated {
+        border: none;
+        @include mixins.elevation(2);
+    }
+
+    &.interactable {
+        cursor: pointer;
+
+        &:hover {
+            &.elevated {
+                @include mixins.elevation(6);
+            }
+
+            &:not(.elevated) {
+                background-color: rgba(0, 0, 0, 0 + (theme.$color-change));
+            }
+        }
+
+        &:active {
+            background-color: rgba(0, 0, 0, 0 + (theme.$color-change * 2)) !important;
+
+            &.elevated {
+                @include mixins.elevation(6);
+            }
+        }
+    }
+
+    &.selected {
+        border: solid 2px map-get($map: theme.$colors, $key: "brand");
+
+        &.toolbar-border .toolbar {
+            border-bottom: solid 2px map-get($map: theme.$colors, $key: "brand");
+        }
+
+        &.elevated {
+            @include mixins.elevation(6);
+        }
+    }
+
     .content {
-        padding: 0.75rem;
-        padding-bottom: 0;
+        padding: $padding;
 
         * {
             &:first-child {
@@ -30,12 +76,13 @@
     }
 
     .actions {
-        padding: 0.75rem;
+        padding: $padding;
+        padding-top: 0;
         display: flex;
         justify-content: flex-end;
 
-        * {
-            margin-left: 0.75rem;
+        & > * {
+            margin-left: 10px;
         }
     }
 }

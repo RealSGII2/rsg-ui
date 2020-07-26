@@ -1,24 +1,36 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Button from '../Button'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import styles from './styles.module.scss'
 
-class Card extends Component {
-    render () {
-        const {
-            title,
-            children,
-            actions,
-            ...baseDivProps
-        } = this.props
+function Card(props) {
+    const {
+        title,
+        children,
+        actions,
+        onClick,
+        bordered,
+        elevated,
+        selected,
+        ...baseDivProps
+    } = props
 
-        const classes = classnames({
-            [styles.card]: true
-        })
+    const classes = classnames({
+        [styles.card]: true,
+        [styles.interactable]: onClick != undefined,
+        [styles["toolbar-border"]]: bordered,
+        [styles.elevated]: elevated,
+        [styles.selected]: selected
+    })
 
-        return (
-            <div className={classes} {...baseDivProps}>
+    function HandleClick(e) {
+        if (onClick) onClick(e);
+    }
+
+    return (
+        <div className={classes} {...baseDivProps}>
+            <div className={styles.interact} onClick={HandleClick}>
                 {title && (
                     <div className={styles.toolbar}>
                         {title}
@@ -26,19 +38,19 @@ class Card extends Component {
                 )}
 
                 <div className={styles.content}>
-                    {this.props.children}
+                    {children}
                 </div>
-
-                {actions.length > 0 && (
-                    <div className={styles.actions}>
-                        {actions.map(action => (
-                            <Button key={Math.floor(Math.random() * 999999999999999999999)} label={action.label} onClick={action.onClick} look={action.look} />
-                        ))}
-                    </div>
-                )}
             </div>
-        )
-    }
+
+            {actions.length > 0 && (
+                <div className={styles.actions}>
+                    {actions.map(action => (
+                        <Button key={Math.floor(Math.random() * 999999999999999999999)} label={action.label} onClick={action.onClick} look={action.look} />
+                    ))}
+                </div>
+            )}
+        </div>
+    )
 }
 
 Card.propTypes = {
@@ -48,12 +60,18 @@ Card.propTypes = {
         label: PropTypes.string.isRequired,
         look: PropTypes.oneOf(["filled", "outline", "outlined", "ghost", "text", "inverted"]),
         onClick: PropTypes.func
-    }))
+    })),
+    elevated: PropTypes.bool,
+    bordered: PropTypes.bool,
+    selected: PropTypes.bool
 }
 
 Card.defaultProps = {
     children: [],
-    actions: []
+    actions: [],
+    elevated: false,
+    bordered: false,
+    selected: false
 }
 
 export default Card
